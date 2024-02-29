@@ -51,7 +51,16 @@ class ReviewController extends Controller
      */
     public function store(ReviewPostRequest $request)
     {
-        $review = $request->only(["ease", "enrichment", "title", "content", "lesson_id"]);
+        $review = $request->only([
+                                    "ease",
+                                    "expertise",
+                                    "opinion",
+                                    "assignment",
+                                    "communication",
+                                    "growth",
+                                    "content",
+                                    "lesson_id"
+                                ]);
         $review["user_id"] = Auth::id();
         Review::create($review);
     }
@@ -61,7 +70,15 @@ class ReviewController extends Controller
      */
     public function update(ReviewUpdateRequest $request, Review $review)
     {
-        $updated_review = $request->only(["ease", "enrichment", "title", "content"]);
+        $updated_review = $request->only([
+                                            "ease",
+                                            "expertise",
+                                            "opinion",
+                                            "assignment",
+                                            "communication",
+                                            "growth",
+                                            "content",
+                                        ]);
         $review->update($updated_review);
     }
 

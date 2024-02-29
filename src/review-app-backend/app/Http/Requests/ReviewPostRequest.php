@@ -23,10 +23,13 @@ class ReviewPostRequest extends FormRequest
     {
         return [
             "ease" => ["required"],
-            "enrichment" => ["required"],
-            "title" => ["required"],
+            "expertise" => ["required"],
+            "opinion" => ["required"],
+            "assignment" => ["required"],
+            "communication" => ["required"],
+            "growth" => ["required"],
             "content" => ["required"],
-            "lesson_id" => ["required"],         
+            "lesson_id" => ["required"],       
         ];
     }
 }

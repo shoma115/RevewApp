@@ -33,7 +33,6 @@ class Review extends Model
         "assignment",
         "communication",
         "growth",
-        "title",
         "content",
         "user_id",
         "lesson_id"

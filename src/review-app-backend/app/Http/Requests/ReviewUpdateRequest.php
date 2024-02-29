@@ -23,9 +23,12 @@ class ReviewUpdateRequest extends FormRequest
     {
         return [
             "ease" => ["required"],
-            "enrichment" => ["required"],
-            "title" => ["required"],
-            "content" => ["required"],       
+            "expertise" => ["required"],
+            "opinion" => ["required"],
+            "assignment" => ["required"],
+            "communication" => ["required"],
+            "growth" => ["required"],
+            "content" => ["required"],    
         ];
     }
 }
