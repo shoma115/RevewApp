@@ -21,14 +21,6 @@ function LessonDetail({ lesson }) {
               <TableCell>{ teachers }</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>出席</TableCell>
-              <TableCell>{ lesson.attendance }</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>テスト</TableCell>
-              <TableCell>{ lesson.test }</TableCell>
-            </TableRow>
-            <TableRow>
               <TableCell>単位</TableCell>
               <TableCell>{ lesson.credit }単位</TableCell>
             </TableRow>
