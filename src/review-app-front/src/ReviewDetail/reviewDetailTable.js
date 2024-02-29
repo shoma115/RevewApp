@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Icon from '@mui/material/Icon';
 import * as reviewQuery from '../Querys/ReviewQuery.js';
 import { ReviewPost } from '../ReviewModal/ReviewModal.js';
+import { RaderChart } from '../commonComponents/Chart.js';
 
 const ReviewDetail = ()  => {
   // 投稿モーダルの開閉
@@ -41,6 +42,7 @@ const ReviewDetail = ()  => {
   
   return (
     <>
+      <RaderChart />
       <LessonDetail lesson={ location }/>
       <ReviewTop lesson={ location }/>
       <FilterReview>
