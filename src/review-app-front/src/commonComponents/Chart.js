@@ -1,6 +1,9 @@
 import ReactEcharts from 'echarts-for-react';
+import {Rating} from '@mui/material';
 
-export const RaderChart = () => {
+export const RaderChart = (props) => {
+  console.log(props.props.reviews_avg_assignment + props.props.reviews_avg_communication + props.props.reviews_avg_ease + props.props.reviews_avg_expertise + props.props.reviews_avg_growth + props.props.reviews_avg_opinion)
+  const evaluation = (props.props.reviews_avg_assignment + props.props.reviews_avg_communication + props.props.reviews_avg_ease + props.props.reviews_avg_expertise + props.props.reviews_avg_growth + props.props.reviews_avg_opinion) / 5
   const option = {
     radar: {
       indicator: [
@@ -18,7 +21,14 @@ export const RaderChart = () => {
         areaStyle: { color: '#606DC2', opacity: 0.1 },
         data: [
           {
-            value: [4, 2, 5, 3, 1, 4],
+            value: [
+              props.props.reviews_avg_opinion, 
+              props.props.reviews_avg_expertise, 
+              props.props.reviews_avg_ease,
+              props.props.reviews_avg_communication,
+              props.props.reviews_avg_assignment,
+              props.props.reviews_avg_growth
+            ],
             label: {
               show: true,
             }
@@ -28,5 +38,16 @@ export const RaderChart = () => {
     ],
   };
 
-  return <ReactEcharts option={option} opts={{ renderer: 'svg' }} />;
+  return (
+    <>
+      <h4>総合:
+        <Rating 
+            precision={0.1} 
+            value={evaluation} 
+            readOnly>
+        </Rating>
+      </h4>
+      <ReactEcharts option={option} opts={{ renderer: 'svg' }} />
+    </>
+  );
 }
