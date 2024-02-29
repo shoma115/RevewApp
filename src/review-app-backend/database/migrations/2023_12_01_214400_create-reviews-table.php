@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string("title");
             $table->text("content");
             $table->integer("ease");
-            $table->integer("enrichment");
+            $table->integer("expertise");
+            $table->integer("opinion");
+            $table->integer("assignment");
+            $table->integer("communication");
+            $table->integer("growth");
             $table->timestamps();
         });
     }

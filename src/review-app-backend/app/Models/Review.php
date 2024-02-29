@@ -28,7 +28,11 @@ class Review extends Model
     // 書き換えが出来るカラムを指定
     protected $fillable = [
         "ease",
-        "enrichment",
+        "expertise",
+        "opinion",
+        "assignment",
+        "communication",
+        "growth",
         "title",
         "content",
         "user_id",

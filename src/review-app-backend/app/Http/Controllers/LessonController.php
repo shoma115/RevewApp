@@ -19,7 +19,11 @@ class LessonController extends Controller
         // リレーションから同時に取得している
         $lessons = Lesson::with("teachers")
                    ->withAvg("reviews", "ease")
-                   ->withAvg("reviews", "enrichment")
+                   ->withAvg("reviews", "expertise")
+                   ->withAvg("reviews", "opinion")
+                   ->withAvg("reviews", "assignment")
+                   ->withAvg("reviews", "communication")
+                   ->withAvg("reviews", "growth")
                 //    リレーション先をとってくるwithメソッドと、取得するデータをレコードで絞り込めるwhereHasメソッドを合わせたやべーやつ
                    ->withWhereHas("division.major.department.faculty", function($faculty) use ($faculty_id) {
                         $faculty->where("id", "=", $faculty_id);
@@ -60,7 +64,11 @@ class LessonController extends Controller
             
         $flitered_lesson = $query_lesson->with("teachers")
             ->withAvg("reviews", "ease")
-            ->withAvg("reviews", "enrichment")
+            ->withAvg("reviews", "expertise")
+            ->withAvg("reviews", "opinion")
+            ->withAvg("reviews", "assignment")
+            ->withAvg("reviews", "communication")
+            ->withAvg("reviews", "growth")
             //    リレーション先をとってくるwithメソッドと、取得するデータをレコードで絞り込めるwhereHasメソッドを合わせたやべーやつ
             ->withWhereHas("division.major.department.faculty", function($faculty) use ($faculty_id) {
                 $faculty->where("id", "=", $faculty_id);
