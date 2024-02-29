@@ -16,14 +16,15 @@ import * as reviewQuery from "../Querys/ReviewQuery";
 
 export const ReviewPost = ({ open, setOpen, lessonId }) => {
   const postQuery = reviewQuery.usePost();
-  const [ ease, setEase ] = useState(0);
-  const [ enrichment, setEnrichment ] = useState(0);
-  const changeEaseValue = (event, newValue) => {
-    setEase(newValue);
-  }
-  const changeEnrichmentValue = (event, newValue) => {
-    setEnrichment(newValue);
-  }
+  // const [ ease, setEase ] = useState(0);
+  // const [ expertise, setExpertise ] = useState(0);
+
+  // const changeEase = (event, newValue) => {
+  //   setEase(newValue);
+  // }
+  // const changeExpertise = (event, newValue) => {
+  //   setExpertise(newValue);
+  // }
   const handleClose = () => {
     setOpen(false);
   }
@@ -58,30 +59,42 @@ export const ReviewPost = ({ open, setOpen, lessonId }) => {
         </DialogActions>
         <DialogContent dividers>
           <FormLabel><h3>評価</h3></FormLabel>
+          <div>意見しやすい環境
+            <Rating 
+              name="opinion" 
+              size="large" 
+            />
+          </div>
+          <div>専門性
+            <Rating 
+              name="expertise" 
+              size="large" 
+            />
+          </div>
           <div>楽単：
             <Rating 
               name="ease" 
-              size="large" 
-              value={ease}
-              onChange={changeEaseValue} 
+              size="large"  
             />
           </div>
-          <div>充実：
+          <div>受講生同士の交流
             <Rating 
-              name="enrichment" 
+              name="communication" 
               size="large" 
-              value={enrichment} 
-              onChange={changeEnrichmentValue} 
             />
           </div>
-          <FormControl fullWidth sx={{ m: 1}}>
-            <FormLabel><h3>タイトル</h3></FormLabel>
-            <TextField
-              name="title"
-              size="small"
-              required
-            ></TextField>
-          </FormControl>
+          <div>課題量
+            <Rating 
+              name="assignment" 
+              size="large" 
+            />
+          </div>
+          <div>成長実感
+            <Rating 
+              name="growth" 
+              size="large" 
+            />
+          </div>
           <FormControl fullWidth sx={{ m: 1 }}>
             <FormLabel><h3>レビュー</h3></FormLabel>
               <TextField
@@ -146,15 +159,6 @@ export const ReviewUpdate = ({ open, setOpen, review }) => {
               defaultValue={review ? review.enrichment : 0} 
             />
           </div>
-          <FormControl fullWidth sx={{ m: 1}}>
-            <FormLabel><h3>タイトル</h3></FormLabel>
-            <TextField
-              name="title"
-              size="small"
-              defaultValue={review ? review.title : null}
-              required
-            ></TextField>
-          </FormControl>
           <FormControl fullWidth sx={{ m: 1 }}>
             <FormLabel><h3>レビュー</h3></FormLabel>
               <TextField
