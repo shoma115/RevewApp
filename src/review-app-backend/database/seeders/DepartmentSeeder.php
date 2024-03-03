@@ -15,8 +15,8 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Department::factory(10)
-            ->has(Major::factory()->count(3))
+        Department::factory(2)
+            ->has(Major::factory()->count(2))
             // belongsToリレーションをfacultyと結ぶ。
             // FacultySeederに記述したhasだけでカラムは埋まるが、明示的にbelongsToを記述しないとデフォルト値エラーが発生した。
             // 第二引数は、モデル内に記述したリレーションを参照している

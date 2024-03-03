@@ -15,8 +15,8 @@ class DivisionSeeder extends Seeder
      */
     public function run(): void
     {
-        Division::factory(10)
-        ->has(Lesson::factory()->count(10))
+        Division::factory(8)
+        ->has(Lesson::factory()->count(2))
         ->for(Major::inRandomOrder()->first(), "major")
         ->create();
     }

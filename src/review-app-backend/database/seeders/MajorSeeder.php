@@ -15,8 +15,8 @@ class MajorSeeder extends Seeder
      */
     public function run(): void
     {
-        Major::factory(10)
-            ->has(Division::factory()->count(10))
+        Major::factory(4)
+            ->has(Division::factory()->count(2))
             ->for(Department::inRandomOrder()->first(), "department")
             ->create();
     }
