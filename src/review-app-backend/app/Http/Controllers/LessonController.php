@@ -16,6 +16,7 @@ class LessonController extends Controller
     {
         $faculty_id = $request->query("faculty");
         $per_page = 15;
+        $number_of_evals = 6;
         // リレーションから同時に取得している
         $lessons = Lesson::with("teachers")
                    ->withAvg("reviews", "ease")
@@ -24,12 +25,17 @@ class LessonController extends Controller
                    ->withAvg("reviews", "assignment")
                    ->withAvg("reviews", "communication")
                    ->withAvg("reviews", "growth")
+                //    評価項目の平均値から、総合評価を出すためのサブクエリ
+                   ->selectSub(function ($query) use ($number_of_evals) {
+                        $query->selectRaw("((AVG(reviews.ease) + AVG(reviews.expertise) + AVG(reviews.opinion) + AVG(reviews.assignment) + AVG(reviews.communication) + AVG(reviews.growth)) / $number_of_evals) as total_evaluation")
+                        ->from("reviews");
+                   }, "total_evaluation")
                 //    リレーション先をとってくるwithメソッドと、取得するデータをレコードで絞り込めるwhereHasメソッドを合わせたやべーやつ
                    ->withWhereHas("division.major.department.faculty", function($faculty) use ($faculty_id) {
                         $faculty->where("id", "=", $faculty_id);
                    }) 
                    ->paginate($per_page);
-
+    
         return new LessonCollection($lessons);
     }
 
@@ -69,6 +75,11 @@ class LessonController extends Controller
             ->withAvg("reviews", "assignment")
             ->withAvg("reviews", "communication")
             ->withAvg("reviews", "growth")
+            //    評価項目の平均値から、総合評価を出すためのサブクエリ
+            ->selectSub(function ($query) use ($number_of_evals) {
+                $query->selectRaw("((AVG(reviews.ease) + AVG(reviews.expertise) + AVG(reviews.opinion) + AVG(reviews.assignment) + AVG(reviews.communication) + AVG(reviews.growth)) / $number_of_evals) as total_evaluation")
+                ->from("reviews");
+            }, "total_evaluation")
             //    リレーション先をとってくるwithメソッドと、取得するデータをレコードで絞り込めるwhereHasメソッドを合わせたやべーやつ
             ->withWhereHas("division.major.department.faculty", function($faculty) use ($faculty_id) {
                 $faculty->where("id", "=", $faculty_id);
