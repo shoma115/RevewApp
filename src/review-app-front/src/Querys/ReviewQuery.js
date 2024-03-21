@@ -4,14 +4,15 @@ import { useMutationWithToast } from "../Functions/useMutationWithToast";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 // レビュー取得APIへのクエリ
-export const useGet = (lessonId) => {
-  const { data, error, isLoading, isError} = useQuery({queryKey: ['reviews', lessonId], queryFn: () => revivewAPI.getAPI(lessonId)});
+export const useGet = (params) => {
+  // queryKey: ['reviews', params],paramsがreviewsキーのキャッシュの依存関係となっており、paramsが変更されると再フィッチがお行われる。
+  const { data, error, isLoading, isError} = useQuery({queryKey: ['reviews', params], queryFn: () => revivewAPI.getAPI(params)});
   return {data, isLoading, isError};
 }
 
 // レビュー検索APIへのクエリ
-export const useSearch = (searchWord, lessonId) => {
-  const { data, error, isLoading, isError } = useQuery({queryKey: ['reviews', searchWord, lessonId], queryFn: () => revivewAPI.searchAPI(searchWord, lessonId)});
+export const useSearch = (params) => {
+  const { data, error, isLoading, isError } = useQuery({queryKey: ['reviews', params], queryFn: () => revivewAPI.searchAPI(params)});
   return {data, isLoading, isError};
 }
 

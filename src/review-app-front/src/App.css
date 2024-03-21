@@ -13,3 +13,108 @@
 .postForm {
   display: block;
 } 
+
+.MainTable {
+  margin: 28px;
+}
+
+.filter_table {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.lessons_table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.lesson {
+  padding: 0px 28px 8px 28px;
+  width: 300px;
+} 
+
+.lesson_name {
+  margin: 0px 0px 16px 0px;
+} 
+
+.lesson_detail {
+  /* display: flex; */
+  flex-wrap: wrap;
+}
+
+.lesson_detail_table {
+  margin: 28px
+}
+
+.lesson_info {
+  margin-bottom: 64px;
+}
+
+.login_form {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.login_card {
+  margin: 32px;
+}
+
+.pagenation {
+  display: flex;
+  justify-content: center;
+}
+
+.toppage {
+  margin: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.total_evaluation {
+  margin: 0px 16px 16px 16px;
+}
+
+.reder_chart {
+  margin-bottom: 16px;
+}
+
+.review {
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.review_edit {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+}
+
+.review_post_button {
+  margin-bottom: 16px;
+  position: fixed;
+  bottom: 60px;
+  right: 20px
+
+}
+
+.search {
+  margin-bottom: 48px;
+}
+
+.select_faculty_button_group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.select_faculty_button {
+  width: 300px;
+}

@@ -5,8 +5,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import { ReviewUpdate, ReviewDelete } from '../ReviewModal/ReviewModal';
 import { useState } from 'react';
 import LikeButton from './LikeButton.js';
+import Card from '@mui/material/Card';
 
 function Review({ reviews }) {
+  const numberOfEvals = 6.0;
   const [ updateOpen, setUpdateOpen ] = useState(false)
   const [ updateReview, setUpdateReview ] = useState(null)
   const handleUpdateDialogOpen = (review) => {
@@ -36,8 +38,8 @@ function Review({ reviews }) {
       if(data.data.id === review.user.id) {
         return (
         <>
-          <DeleteIcon onClick={() => handleDeleteDialogOpen(review)}></DeleteIcon>
           <EditIcon onClick={() => handleUpdateDialogOpen(review)}></EditIcon>
+          <DeleteIcon onClick={() => handleDeleteDialogOpen(review)}></DeleteIcon>
         </>
         )
       } else {
@@ -51,20 +53,25 @@ function Review({ reviews }) {
   }
   const reviewCard = reviews.map((review) =>
     <>
-      <div key={review.id}>
-        <div>{ edit(data, isLoading, isError, review) }</div>
+      <Card className='review' variant="outlined" key={review.id}>
+        <div className='review_edit'>{ edit(data, isLoading, isError, review) }</div>
         <div className='userOnReview'>
           <Avatar />
           <span>{ review.user.name }</span>
         </div>
         <div>
-          <div>楽単：<Rating value={ review.ease } readOnly/></div>
-          <div>充実：<Rating value={ review.enrichment } readOnly/></div>
+          <div>総合：
+            <Rating
+              precision={0.1} 
+              value={ parseFloat(review.ease + review.opinion + review.assignment + review.communication + review.expertise + review.growth) / numberOfEvals} 
+              readOnly
+            />
+          </div>
         </div>
         <h3>{ review.title }</h3>
         <p>{ review.content }</p>
         <LikeButton review={review}/>
-      </div>
+      </Card>
     </>
   )
 

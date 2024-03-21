@@ -9,6 +9,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
 import { useLogin } from '../Querys/AuthQuery';
+import { Card } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const login = useLogin();
@@ -32,9 +34,10 @@ const LoginPage = () => {
   }
 
   return (
-    <>    
-      <form onSubmit={handleLogin}>
-        <FormLabel>ログイン</FormLabel>
+    <>
+      <Card variant="outlined" className='login_card'>   
+        <form className='login_form' onSubmit={handleLogin}>
+          <FormLabel>ログイン</FormLabel>
           <TextField
             required
             label="鹿大メールアドレス"
@@ -65,8 +68,10 @@ const LoginPage = () => {
             }}
           ></TextField>
           </div>
-        <Button variant="contained" type="submit">ログイン</Button>
-      </form>
+          <Button variant="contained" type="submit">ログイン</Button>
+          <Link to={"/register"}>新規登録はこちら</Link>
+        </form>
+      </Card>
     </>
   )
 } 

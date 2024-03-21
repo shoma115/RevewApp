@@ -2,31 +2,29 @@ import axiosApiSetBaseURL from '../BaseURL';
 import qs from 'qs';
 
 // 授業のレビューの取得
-export const getAPI = async(lesson) => {
- try {
-  const response = await axiosApiSetBaseURL.get(`api/review?lesson=${ lesson }`)
-  const data = response.data.data
-  return data
- }
- catch(error) {
-  console.log(error);
-  throw(error)
- }
+export const getAPI = async(params) => {
+  const queryParams = qs.stringify(params);
+  try {
+    const response = await axiosApiSetBaseURL.get(`api/review?${ queryParams }`)
+    const data = response.data
+    return data
+  }
+  catch(error) {
+    console.log(error);
+    throw(error)
+  }
 }
 
 // レビューの検索
-export const searchAPI = async(searchWord, lesson) => {
-  const searchParams = {
-    search: searchWord ? searchWord : null, 
-  }
-
+export const searchAPI = async(params) => {
   const fliteredSearchParams = Object.fromEntries(
-    Object.entries(searchParams).filter(([key, value]) => value !== null)
+    Object.entries(params).filter(([key, value]) => value !== null)
   );
   const queryParams = qs.stringify(fliteredSearchParams);
+  console.log(queryParams)
   try {
-    const response = await axiosApiSetBaseURL.get(`api/review/search?lesson=${ lesson }&${ queryParams }`)
-    const data = response.data.data;
+    const response = await axiosApiSetBaseURL.get(`api/review/search?${ queryParams }`)
+    const data = response.data;
     return data
   }
   catch(error) {

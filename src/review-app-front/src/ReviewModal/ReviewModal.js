@@ -16,15 +16,6 @@ import * as reviewQuery from "../Querys/ReviewQuery";
 
 export const ReviewPost = ({ open, setOpen, lessonId }) => {
   const postQuery = reviewQuery.usePost();
-  // const [ ease, setEase ] = useState(0);
-  // const [ expertise, setExpertise ] = useState(0);
-
-  // const changeEase = (event, newValue) => {
-  //   setEase(newValue);
-  // }
-  // const changeExpertise = (event, newValue) => {
-  //   setExpertise(newValue);
-  // }
   const handleClose = () => {
     setOpen(false);
   }
@@ -59,37 +50,43 @@ export const ReviewPost = ({ open, setOpen, lessonId }) => {
         </DialogActions>
         <DialogContent dividers>
           <FormLabel><h3>評価</h3></FormLabel>
-          <div>意見しやすい環境
+          <div>
+            <div>意見しやすい環境:</div>
             <Rating 
               name="opinion" 
               size="large" 
             />
           </div>
-          <div>専門性
+          <div>
+            <div>専門性:</div>
             <Rating 
               name="expertise" 
               size="large" 
             />
           </div>
-          <div>楽単：
+          <div>
+            <div>楽単：</div>
             <Rating 
               name="ease" 
               size="large"  
             />
           </div>
-          <div>受講生同士の交流
+          <div>
+            <div>受講生同士の交流:</div>
             <Rating 
               name="communication" 
               size="large" 
             />
           </div>
-          <div>課題量
+          <div>
+            <div>課題量:</div>
             <Rating 
               name="assignment" 
               size="large" 
             />
           </div>
-          <div>成長実感
+          <div>
+            <div>成長実感:</div>
             <Rating 
               name="growth" 
               size="large" 
@@ -145,20 +142,54 @@ export const ReviewUpdate = ({ open, setOpen, review }) => {
         </DialogActions>
         <DialogContent dividers>
           <FormLabel><h3>評価</h3></FormLabel>
-          <div>楽単：
-            <Rating 
-              name="ease" 
-              size="large"  
-              defaultValue={review ? review.ease : 0}
-            />
-          </div>
-          <div>充実：
-            <Rating 
-              name="enrichment" 
-              size="large" 
-              defaultValue={review ? review.enrichment : 0} 
-            />
-          </div>
+            <div>
+              <div>意見しやすい環境:</div>
+              <Rating 
+                name="opinion" 
+                size="large" 
+                defaultValue={review ? review.opinion : 0}
+              />
+            </div>
+            <div>
+              <div>専門性:</div>
+              <Rating 
+                name="expertise" 
+                size="large" 
+                defaultValue={review ? review.expertise : 0}
+              />
+            </div>
+            <div>
+              <div>楽単：</div>
+              <Rating 
+                name="ease" 
+                size="large"  
+                defaultValue={review ? review.ease : 0}
+              />
+            </div>
+            <div>
+              <div>受講生同士の交流:</div>
+              <Rating 
+                name="communication" 
+                size="large"
+                defaultValue={review ? review.communication : 0} 
+              />
+            </div>
+            <div>
+              <div>課題量:</div>
+              <Rating 
+                name="assignment" 
+                size="large" 
+                defaultValue={review ? review.assignment : 0}
+              />
+            </div>
+            <div>
+              <div>成長実感:</div>
+              <Rating 
+                name="growth" 
+                size="large"
+                defaultValue={review ? review.growth : 0} 
+              />
+            </div>
           <FormControl fullWidth sx={{ m: 1 }}>
             <FormLabel><h3>レビュー</h3></FormLabel>
               <TextField

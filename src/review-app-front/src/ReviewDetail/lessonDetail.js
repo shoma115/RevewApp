@@ -12,7 +12,6 @@ function LessonDetail({ lesson }) {
 
   return (
     <>
-      <h1>{ lesson.name }</h1>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableBody>

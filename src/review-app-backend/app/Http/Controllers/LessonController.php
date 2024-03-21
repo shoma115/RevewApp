@@ -28,7 +28,8 @@ class LessonController extends Controller
                 //    評価項目の平均値から、総合評価を出すためのサブクエリ
                    ->selectSub(function ($query) use ($number_of_evals) {
                         $query->selectRaw("((AVG(reviews.ease) + AVG(reviews.expertise) + AVG(reviews.opinion) + AVG(reviews.assignment) + AVG(reviews.communication) + AVG(reviews.growth)) / $number_of_evals) as total_evaluation")
-                        ->from("reviews");
+                        ->from("reviews")
+                        ->whereColumn("reviews.lesson_id", "=", "lessons.id");
                    }, "total_evaluation")
                 //    リレーション先をとってくるwithメソッドと、取得するデータをレコードで絞り込めるwhereHasメソッドを合わせたやべーやつ
                    ->withWhereHas("division.major.department.faculty", function($faculty) use ($faculty_id) {

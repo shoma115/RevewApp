@@ -11,6 +11,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
 import { useRegister } from '../Querys/AuthQuery';
 import { toastError } from '../commonComponents/Toast';
+import { Card } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [ name, setName ] = useState(null);
@@ -46,8 +48,9 @@ const RegisterPage = () => {
 
   return (
     <>    
-      <form onSubmit={handleRegister}>
-        <FormLabel>新規登録</FormLabel>
+      <Card variant="outlined" className='login_card'>   
+        <form className='login_form' onSubmit={handleRegister}>
+          <FormLabel>新規登録</FormLabel>
           <TextField
             required
             label="ユーザー名" 
@@ -108,8 +111,10 @@ const RegisterPage = () => {
             }}
           ></TextField>
           </div>
-        <Button variant="contained" type="submit" >登録</Button>
-      </form>
+          <Button variant="contained" type="submit" >登録</Button>
+          <Link to={"/login"}>すでにアカウントをお持ちの方</Link>
+        </form>
+      </Card>
     </>
   )
 } 

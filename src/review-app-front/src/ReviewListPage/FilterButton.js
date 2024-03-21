@@ -7,9 +7,9 @@ function FilterButton({ facultyId, setDepartments, children }) {
   }, [])
 
   return (
-    <>
+    <div>
       { children }
-    </>
+    </div>
   );
 }
 

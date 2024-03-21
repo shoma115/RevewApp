@@ -18,17 +18,19 @@ class ReviewController extends Controller
      */
     public function index(Request $request)
     {
+        $per_page = 20;
         $lesson_id = $request->query("lesson");
         $reviews = Review::where("lesson_id", "=", $lesson_id)
                             ->with("user")
                             ->with("likes")
-                            ->get();
+                            ->paginate($per_page);
         
         return new ReviewCollection($reviews);
     }
 
     public function search(Request $request) 
     {
+        $per_page = 20;
         $lesson_id = $request->query("lesson");
         $query_review = Review::query();
 
@@ -41,7 +43,7 @@ class ReviewController extends Controller
                             ->where("lesson_id", "=", $lesson_id)
                             ->with("user")
                             ->with("likes")
-                            ->get();
+                            ->paginate($per_page);
         
         return new ReviewCollection($filterd_reviews); 
     }

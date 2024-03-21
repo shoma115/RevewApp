@@ -27,12 +27,11 @@ const LikeButton = (review) => {
     }
     setLike(!like);
   }
-
+  
   // ユーザーが過去にいいねを押しているかどうかでデフォルトのレイアウトとlikeステイトを切り替える
   useEffect(() => {
     if(data) {
       for(let i = 0; i < review.review.likes.length; i++) { 
-        console.log(review.review.likes[i]["user_id"])
         if(review.review.likes[i]["user_id"] == data.data.id) {
           setLike(true);
           setButtonVariant("contained");
@@ -40,7 +39,7 @@ const LikeButton = (review) => {
         }
       }
     }
-  }, [data])
+  }, [])
 
   return (
     <>

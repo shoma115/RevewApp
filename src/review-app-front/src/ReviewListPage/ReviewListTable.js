@@ -3,12 +3,13 @@ import FilterButton from './FilterButton.js';
 import SearchBox from '../commonComponents/SearchBox.js';
 import FilterModal from './FilterModal';
 import MainContent from './MainContentTable.js';
-import Paginate from './Paginate.js';
+import Paginate from '../commonComponents/Paginate.js';
 import { useEffect, useState } from 'react';
 import getLessonAPI from './getLessonAPI.js';
 import searchLessonAPI from './searchLessonAPI.js';
 import { useLocation } from 'react-router-dom';
 import { Icon } from '@mui/material';
+import '../../src/App.css';
 
 function ReviewList() {
   const [lessons, setLessons] = useState([]);
@@ -58,7 +59,6 @@ function ReviewList() {
     setOnSearch(true);
     handleClose();
   }
-  
   useEffect(() => {
 
     // 検索がかかっていたら、検索APIを実行。そうでなければ通常のAPIを実行
@@ -84,11 +84,16 @@ function ReviewList() {
   // setCurrentPageをpropとして子のpaginateに渡しており、ページを変更するごとにcurrentPageが再設定される。
   // つまり、依存配列にcurrentPageを設定することで、ページを移動するごとにAPIが起動する。マウント時もちゃんと起動するので安心してね
   }, [currentPage])
+  
+  const from = page.from;
+  const to = page.to
+  const total = page.total;
+  const displayed = from + "～" + to + "件" + " / 全"  + total + "件";
 
     // lessonsをpropとしてMainContentに引き渡し、MainContentからReviewBoxへlessonsが引き渡される
   return (
     <>
-      <div>
+      <div className='MainTable'>
         {/* childrenプロップで、子コンポーネントを渡している */}
         <FilterLessonTable>
           <SearchBox 
@@ -100,7 +105,7 @@ function ReviewList() {
           <FilterButton facultyId={facultyId} setDepartments={setDepartments}>
             <p>
               学科以下で絞り込み
-              <Icon color="primary" onClick={ handleOpne }>add_circle</Icon>
+              <Icon color="primary" fontSize="large" onClick={ handleOpne }>add_circle</Icon>
             </p>
             <FilterModal 
               departments={departments}  
@@ -115,6 +120,7 @@ function ReviewList() {
               handleSearch={handleSearch}
             />
           </FilterButton>
+          <span>{ displayed }</span>
         </FilterLessonTable>
         <MainContent lessons={ lessons } page={ page } />
         <Paginate page={ page } setCurrentPage={ setCurrentPage }/>
